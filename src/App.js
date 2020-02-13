@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import ButtonBox from './ButtonBox.js'
+//import Headerr from './Header.js'
+//import Addbutton from './Addbutton.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(props){
+    super(props)
+    this.state = {
+        buttonList: []
+        }
+    }
+
+    onAddBtnClick = () => {
+        let {buttonList} = this.state
+        buttonList.push(<ButtonBox key={buttonList.length}/>)
+        this.setState({buttonList: buttonList})
+    }
+    render(){
+        let {buttonList} = this.state
+        return (
+            <div>
+                <button className="Add-me-button" onClick= {this.onAddBtnClick}> 😜 Click Me to add😜</button>
+                <div className="Button-list">
+                {buttonList}
+                </div>
+                <ButtonBox />
+        </div>
+      );
+    }
 }
-
 export default App;
